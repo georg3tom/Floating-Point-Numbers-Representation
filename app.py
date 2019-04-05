@@ -17,5 +17,29 @@ def theory():
 def objective():
     return render_template("objective.html")
 
+@app.route("/experiment")
+def exp():
+    return render_template("experiment.html")
+
+@app.route("/manual")
+def manual():
+    return render_template("manual.html")
+
+@app.route("/quizzes")
+def quizzes():
+    return render_template("quizzes.html")
+
+@app.route("/procedure")
+def procedure():
+    return render_template("procedure.html")
+
+@app.route("/refrences")
+def references():
+    return render_template("refrences.html")
+
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
