@@ -900,7 +900,7 @@ font-size: 30px;
 
 .lab-list-col-10
 {
-	background: url("../images/devider-blue-v-o.png") repeat-y;
+	background: url("../img/devider-blue-v-o.png") repeat-y;
 	background-position: left top;
 	margin-bottom: 25px;
 }
@@ -911,7 +911,7 @@ font-size: 30px;
 
 .lab-list-row-div
 {
-	  background: url('../images/bottom-line-n.png') no-repeat;
+	  background: url('../img/bottom-line-n.png') no-repeat;
   background-position: left bottom;
   height: auto;
   overflow: hidden;
