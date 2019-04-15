@@ -32,11 +32,11 @@ def quizzes():
     and request.args.get('q5'):
         a1=a2=a3=a4=a5=0;
         a=[]
-        a[0]=request.args.get('q1')
-        a[1]=request.args.get('q2')
-        a[2]=request.args.get('q3')
-        a[3]=request.args.get('q4')
-        a[4]=request.args.get('q5')
+        a.append(request.args.get('q1'))
+        a.append(request.args.get('q2'))
+        a.append(request.args.get('q3'))
+        a.append(request.args.get('q4'))
+        a.append(request.args.get('q5'))
         return str(quizcheck(a))
         # if(int(request.args.get('q1'))==None):
         #     a1=1;
@@ -58,12 +58,15 @@ def procedure():
 def references():
     return render_template("refrences.html")
 
-@mod_user.route("/q/<q>")
-def referes(q):
+@mod_user.route("/q")
+def referes():
     user=User.query.all()
     bourne={}
+    i=0
     for usr in user:
-        return str(usr.check(q))
+        bourne[i]=usr.ans
+        i=i+1
+    return jsonify(bourne) 
 
 @mod_user.route("/feedback")
 def feedback():

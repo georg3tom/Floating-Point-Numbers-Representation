@@ -12,11 +12,11 @@ class User(db.Model):
 def quizcheck(a):
     user=User.query.all()
     i=0
-    r=[]
+    r=""
     for usr in user:
-        r[i]=0
-        if a[i]==usr.ans:
-            r[i]=1
-        ++i
+        if a[i]==str(usr.ans):
+            r+="1"
+        else:
+            r+="0"
+        i=i+1
     return r
-
