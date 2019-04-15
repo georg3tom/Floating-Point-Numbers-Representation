@@ -9,3 +9,14 @@ class User(db.Model):
         self.ans=ans
     def check(self,op):
         return int(self.ans==int(op))
+def quizcheck(a):
+    user=User.query.all()
+    i=0
+    r=[]
+    for usr in user:
+        r[i]=0
+        if a[i]==usr.ans:
+            r[i]=1
+        ++i
+    return r
+

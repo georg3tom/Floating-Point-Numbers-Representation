@@ -1,24 +1,43 @@
 function httpGet(theUrl)
 {
-	 if (window.XMLHttpRequest)
-	 {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	 }
-	 else
-	 {// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	 }
-	 xmlhttp.onreadystatechange=function()
-	 {
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			return xmlhttp.responseText;
-		}
-	 }
-	 xmlhttp.open("GET", theUrl, false );
-	 xmlhttp.send();    
+	var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
 }
 function check(argument)
 {
+	var form=document.forms["quiz"];
+	var q1=5,q2=5,q3=5, q4=5,q5=5,length;
 	
+	length = form["q1"].length;
+	for(i=0; i<length; i++)
+		if(form["q1"][i].checked)
+			q1 = form["q1"][i].value;
+	
+	length = form["q2"].length;
+	for(i=0; i<length; i++)
+		if(form["q2"][i].checked)
+			q2 = form["q2"][i].value;
+	
+	length = form["q3"].length;
+	for(i=0; i<length; i++)
+		if(form["q3"][i].checked)
+			q3 = form["q3"][i].value;
+
+	length = form["q4"].length;
+	for(i=0; i<length; i++)
+		if(form["q4"][i].checked)
+			q4 = form["q4"][i].value;
+
+	length = form["q5"].length;
+	for(i=0; i<length; i++)
+		if(form["q5"][i].checked)
+			q5 = form["q5"][i].value;
+	
+	url="/quizzes?q1="+q1+"&q2="+q2+"&q3="+q3+"&q4="+q4+"&q5="+q5
+	ret=httpGet(url)
+	console.log(ret)
 }

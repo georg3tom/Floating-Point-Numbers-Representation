@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session, jsonify,render_template
 from app import db
-from .models import User
+from .models import User,quizcheck
 
 mod_user = Blueprint('user', __name__, url_prefix='/')
 
@@ -27,19 +27,26 @@ def manual():
 
 @mod_user.route("/quizzes")
 def quizzes():
-    return render_template("quizzes.html")
-    if request.args.get('subm')!= None and request.args.get('q1') != None and request.args.get('q2') != None \
-    and request.args.get('q3') != None and request.args.get('q4') != None:
+    if request.args.get('q1') != None and request.args.get('q2') != None \
+    and request.args.get('q3') != None and request.args.get('q4') != None \
+    and request.args.get('q5'):
         a1=a2=a3=a4=a5=0;
-        if(int(request.args.get('q1'))==None):
-            a1=1;
-        elif(int(request.args.get('q2'))==1):
-            a2=1;
-        elif(int(request.args.get('q3'))==1):
-            a3=1;
-        elif(int(request.args.get('q4'))==1):
-            a4=1;
-        return str(a1)+str(a2)+str(a3)+str(a4);
+        a=[]
+        a[0]=request.args.get('q1')
+        a[1]=request.args.get('q2')
+        a[2]=request.args.get('q3')
+        a[3]=request.args.get('q4')
+        a[4]=request.args.get('q5')
+        return str(quizcheck(a))
+        # if(int(request.args.get('q1'))==None):
+        #     a1=1;
+        # elif(int(request.args.get('q2'))==1):
+        #     a2=1;
+        # elif(int(request.args.get('q3'))==1):
+        #     a3=1;
+        # elif(int(request.args.get('q4'))==1):
+        #     a4=1;
+        # return str(a1)+str(a2)+str(a3)+str(a4);
     else:
         return render_template("quizzes.html")
 
@@ -53,9 +60,9 @@ def references():
 
 @mod_user.route("/q/<q>")
 def referes(q):
-    user=User.query.all()                                                                   
+    user=User.query.all()
     bourne={}
-    for usr in user:    
+    for usr in user:
         return str(usr.check(q))
 
 @mod_user.route("/feedback")
