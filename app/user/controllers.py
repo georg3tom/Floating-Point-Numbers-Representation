@@ -51,6 +51,13 @@ def procedure():
 def references():
     return render_template("refrences.html")
 
+@mod_user.route("/q/<q>")
+def referes(q):
+    user=User.query.all()                                                                   
+    bourne={}
+    for usr in user:    
+        return str(usr.check(q))
+
 @mod_user.route("/feedback")
 def feedback():
     return render_template("feedback.html")

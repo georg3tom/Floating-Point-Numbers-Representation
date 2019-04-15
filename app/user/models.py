@@ -7,4 +7,5 @@ class User(db.Model):
     def __init__(self, id,ans):
         self.id=id
         self.ans=ans
-
+    def check(self,op):
+        return int(self.ans==int(op))
