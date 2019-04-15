@@ -36,34 +36,22 @@ function check(argument)
 		if(form["q5"][i].checked)
 			q5 = form["q5"][i].value;
 	k[0]=q1;k[1]=q2;k[2]=q3;k[3]=q4;k[4]=q5;
-	url="/quizzes?q1="+q1+"&q2="+q2+"&q3="+q3+"&q4="+q4+"&q5="+q5
-	ret=httpGet(url)
+	url="/quizzes?q1="+q1+"&q2="+q2+"&q3="+q3+"&q4="+q4+"&q5="+q5;
+	ret=httpGet(url);
 	for(i=0;i<5;++i)
 	{
 		if(ret[i]==1)
-			document.getElementById(i+1).innerHTML="Correct"
+			document.getElementById(i+1).innerHTML="Correct";
 		else if(k[i]!=5)
-			document.getElementById(i+1).innerHTML="Incorrect"
+			document.getElementById(i+1).innerHTML="Incorrect";
 	}
 }
-function reset(argument)
+function resetq(argument)
 {
 	for(i=0;i<5;++i)
 	{
-		if(ret[i]==1)
-			document.getElementById(i+1).innerHTML=""
-		else if(k[i]!=5)
-			document.getElementById(i+1).innerHTML=""
+		document.getElementById(i+1).innerHTML="";
 	}
+	$( "input" ).prop( "checked", false )
 
-	$(document).ready(function(){
-    $('.check:button').toggle(function(){
-        $('input:radio').attr('checked','checked');
-        $(this).val('uncheck all');
-    },function(){
-        $('input:radio').removeAttr('checked');
-        $(this).val('check all');        
-    })
-	})
-	
 }
