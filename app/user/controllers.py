@@ -54,9 +54,9 @@ def quizzes():
 def procedure():
     return render_template("procedure.html")
 
-@mod_user.route("/refrences")
+@mod_user.route("/references")
 def references():
-    return render_template("refrences.html")
+    return render_template("references.html")
 
 @mod_user.route("/q")
 def referes():
@@ -66,7 +66,7 @@ def referes():
     for usr in user:
         bourne[i]=usr.ans
         i=i+1
-    return jsonify(bourne) 
+    return jsonify(bourne)
 
 @mod_user.route("/feedback")
 def feedback():
