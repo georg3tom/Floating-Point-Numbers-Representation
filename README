@@ -16,11 +16,11 @@
 
 	/errors/handlers.py			contains routes for error 404 and 500
 
-	
+
 	/static/js/exp.js :
 		funtion ieee()
 			reads value from the input box(id='infloat')
-			sends a GET request to the server 
+			sends a GET request to the server
 			var ret is a JSON data containing the sign,exponent,exponent bits of the input
 			if ret['status'] is fail the input validation has failed
 			else a new table is inserted
@@ -31,17 +31,17 @@
 			send a GET requst to evaluate the users response
 			var ret is a string of 0s and 1s
 			if ret=1011 -> only the second qustion is incorrect
-			if k[i] is 5 -> i+1th question is unansweres 
+			if k[i] is 5 -> i+1th question is unansweres
 			this is done so that that question not marked incorrect
-			
+
 		function reset() :
-			Resets the users input and 
+			Resets the users input and
 			clears 'Correct' or 'Incorrect' tags
 
 	/quizadd.py :
 		adds question to the database
 		the database file is located at app/quiz.db
-	
+
 
 	/user/controllers.py :
 		Contains routed to all pages in the navbar-
@@ -69,3 +69,6 @@
 
 		function quizcheck() :
 			Checks if the user input matches with the answers saved in the database
+
+	/user/exp.py :
+		Functions to convert a number to its iEEE 754 representation

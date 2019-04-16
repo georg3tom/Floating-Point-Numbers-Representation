@@ -57,8 +57,11 @@ def quizzes():
         #quiz check returns a string with zeros and ones (mentioned in quiz.js)
         return str(quizcheck(a,b))
     else:
-        qess=random.sample(range(1,9), 4)
-        user=Quiz.query.all()
+        qess=random.sample(range(1,9),4)
+        try:
+            user=Quiz.query.all()
+        except:
+            return render_template('error/500.html')
         args=[]
         bourne={}
         i=1
