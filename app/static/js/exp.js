@@ -1,3 +1,4 @@
+// gets data from the server
 function httpGet(theUrl)
 {
 	var xmlHttp = null;
@@ -6,20 +7,23 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+
+// function to get the IEEE format
 function ieee()
 {
 	fnum=document.getElementById('infloat').value;
 	url="/experiment/"+fnum
 	ret={}
-	ret=httpGet(url)
+	ret=httpGet(url) //requests server for the IEEE format of input
 	ret=JSON.parse(ret)
-	if (ret['status']=="fail")
+	if (ret['status']=="fail")  //Input is not a valid float
 	{
 		$("#ftable tr").remove();
 		document.getElementById('cont').innerHTML="<br>Enter a vaid floating point number."
 	}
 	else
 	{
+		//remove the existing table and add a new one
 		document.getElementById('cont').innerHTML="<br>"
 		$("#ftable tr").remove();
 		// document.getElementById("ftable").deleteRow(0);

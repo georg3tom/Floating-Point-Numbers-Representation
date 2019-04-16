@@ -7,9 +7,10 @@ Floating Point Numbers Representation
 <form name="quiz"  accept-charset="utf-8">
 	<br>
 	{% for arg in args %}
-	
-	{{arg.n}}. {{arg.ques}}	  
-	<span class="q{{arg.n}}" id="{{arg.id}}" style="font-weight:bold;" > 
+	<span style="font-weight:bold;">
+	{{arg.n}}. {{arg.ques}}
+	</span>
+	<span class="q{{arg.n}}" id="{{arg.id}}" style="font-weight:bold;" >
 	</span>
 	<br>
 	<input type="radio" name="q{{arg.n}}" id="q11" value="1">

@@ -5,6 +5,9 @@ def float_bin(number, places = 3):
     whole = int(whole)
     dec = int (dec)
     res = bin(whole).lstrip("0b") + "."
+    # adds 0 is num is less than one
+    if len(res)==1:
+	       res='0'+res
 
     for x in range(places):
         whole, dec = str((decimal_converter(dec)) * 2).split(".")
@@ -15,7 +18,7 @@ def float_bin(number, places = 3):
 def decimal_converter(num):
     while num > 1:
         num /= 10
-    return num
+    return float(num)
 
 def IEEE754(n) :
 
@@ -32,6 +35,7 @@ def IEEE754(n) :
     # separate the decimal part
     # and the whole number part
     whole, dec = str(dec).split(".")
+    # whole=whole.replace('\.','')
     whole = int(whole)
 
     # calculating the exponent(E)
@@ -47,6 +51,9 @@ def IEEE754(n) :
     mantissa = mantissa + dec
     mantissa = mantissa[0:23]
 
+    while len(str(exponent_bits)) < 8:
+	       exponent_bits='0'+str(exponent_bits)
+
     final = str(sign) + str(exponent_bits) + mantissa
     bourne={}
     bourne['status']="pass"
@@ -56,6 +63,4 @@ def IEEE754(n) :
     bourne['mantissa']=mantissa
     bourne['final']=final
     return jsonify(bourne)
-
-# print (IEEE754(263.3))
-# print (IEEE754(-263.3))
+# print(float_bin(2.0,30))

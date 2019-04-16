@@ -1,3 +1,4 @@
+// sends request to the server
 function httpGet(theUrl)
 {
 	var xmlHttp = null;
@@ -7,6 +8,7 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+//evaluate the quiz
 function check(argument)
 {
 	var form=document.forms["quiz"];
@@ -38,9 +40,8 @@ function check(argument)
 	kk[2]=document.querySelector('.q3').id
 	kk[3]=document.querySelector('.q4').id
 	url="/quizzes?q1="+q1+"&q11="+kk[0]+"&q2="+q2+"&q22="+kk[1]+"&q3="+q3+"&q33="+kk[2]+"&q4="+q4+"&q44="+kk[3];
-	console.log(url)
 	ret=httpGet(url);
-	console.log(ret)
+	//ret contains 1s and 0s 1 if it is correct and 0 if it is wrong
 	for(i=0;i<4;++i)
 	{
 		if(ret[i]==1)
@@ -55,6 +56,7 @@ function check(argument)
 		}
 	}
 }
+//resets the quiz
 function resetq(argument)
 {
 	var kk=new Array()

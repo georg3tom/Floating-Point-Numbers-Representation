@@ -1,11 +1,12 @@
 from flask import Blueprint, request, session, jsonify,render_template
 from app import db
-from .models import User,quizcheck
+from .models import Quiz,quizcheck
 import random
 from .exp import float_bin,decimal_converter,IEEE754
 
 mod_user = Blueprint('user', __name__, url_prefix='/')
 
+#Contains routes for all main pages
 @mod_user.route("/")
 @mod_user.route("/introduction")
 def intro():
@@ -28,6 +29,7 @@ def ieee(arg):
     try:
         ret=IEEE754(float(arg))
     except:
+        #validation failed
         bourne={}
         bourne['status']="fail"
         return jsonify(bourne)
@@ -42,8 +44,8 @@ def quizzes():
     if request.args.get('q1') != None and request.args.get('q2') != None \
     and request.args.get('q3') != None and request.args.get('q4') != None:
         a1=a2=a3=a4=a5=0;
-        a=[]
-        b=[]
+        a=[] #contains option marked by the user
+        b=[] #contains the question ID
         a.append(request.args.get('q1'))
         b.append(request.args.get('q11'))
         a.append(request.args.get('q2'))
@@ -52,10 +54,11 @@ def quizzes():
         b.append(request.args.get('q33'))
         a.append(request.args.get('q4'))
         b.append(request.args.get('q44'))
+        #quiz check returns a string with zeros and ones (mentioned in quiz.js)
         return str(quizcheck(a,b))
     else:
         qess=random.sample(range(1,8), 4)
-        user=User.query.all()
+        user=Quiz.query.all()
         args=[]
         bourne={}
         i=1
@@ -85,7 +88,7 @@ def references():
 
 @mod_user.route("/q")
 def referes():
-    user=User.query.all()
+    user=Quiz.query.all()
     bourne={}
     i=0
     for usr in user:
