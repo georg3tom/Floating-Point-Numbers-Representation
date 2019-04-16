@@ -57,7 +57,7 @@ def quizzes():
         #quiz check returns a string with zeros and ones (mentioned in quiz.js)
         return str(quizcheck(a,b))
     else:
-        qess=random.sample(range(1,8), 4)
+        qess=random.sample(range(1,9), 4)
         user=Quiz.query.all()
         args=[]
         bourne={}
@@ -76,6 +76,7 @@ def quizzes():
                 i+=1
                 args.append(bourne)
         # return str(args)
+        # args contains shiffled quiz # QUESTION&ANS
         return render_template("quizzes.html",args=args)
 
 @mod_user.route("/procedure")

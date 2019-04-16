@@ -1,4 +1,4 @@
-// sends request to the server
+// sends requesec to the server
 function httpGet(theUrl)
 {
 	var xmlHttp = null;
@@ -9,7 +9,7 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 //evaluate the quiz
-function check(argument)
+function check()
 {
 	var form=document.forms["quiz"];
 	var q1=5,q2=5,q3=5, q4=5,q5=5,length,k=new Array();
@@ -57,7 +57,7 @@ function check(argument)
 	}
 }
 //resets the quiz
-function resetq(argument)
+function resetq()
 {
 	var kk=new Array()
 	kk[0]=document.querySelector('.q1').id
