@@ -1,6 +1,8 @@
 from flask import Blueprint, request, session, jsonify,render_template
 from app import db
 from .models import User,quizcheck
+import random
+from .exp import float_bin,decimal_converter,IEEE754
 
 mod_user = Blueprint('user', __name__, url_prefix='/')
 
@@ -21,6 +23,16 @@ def objective():
 def exp():
     return render_template("experiment.html")
 
+@mod_user.route("/experiment/<arg>")
+def ieee(arg):
+    try:
+        ret=IEEE754(float(arg))
+    except:
+        bourne={}
+        bourne['status']="fail"
+        return jsonify(bourne)
+    return ret
+
 @mod_user.route("/manual")
 def manual():
     return render_template("manual.html")
@@ -28,27 +40,40 @@ def manual():
 @mod_user.route("/quizzes")
 def quizzes():
     if request.args.get('q1') != None and request.args.get('q2') != None \
-    and request.args.get('q3') != None and request.args.get('q4') != None \
-    and request.args.get('q5'):
+    and request.args.get('q3') != None and request.args.get('q4') != None:
         a1=a2=a3=a4=a5=0;
         a=[]
+        b=[]
         a.append(request.args.get('q1'))
+        b.append(request.args.get('q11'))
         a.append(request.args.get('q2'))
+        b.append(request.args.get('q22'))
         a.append(request.args.get('q3'))
+        b.append(request.args.get('q33'))
         a.append(request.args.get('q4'))
-        a.append(request.args.get('q5'))
-        return str(quizcheck(a))
-        # if(int(request.args.get('q1'))==None):
-        #     a1=1;
-        # elif(int(request.args.get('q2'))==1):
-        #     a2=1;
-        # elif(int(request.args.get('q3'))==1):
-        #     a3=1;
-        # elif(int(request.args.get('q4'))==1):
-        #     a4=1;
-        # return str(a1)+str(a2)+str(a3)+str(a4);
+        b.append(request.args.get('q44'))
+        return str(quizcheck(a,b))
     else:
-        return render_template("quizzes.html")
+        qess=random.sample(range(1,8), 4)
+        user=User.query.all()
+        args=[]
+        bourne={}
+        i=1
+        for usr in user:
+            if usr.id in qess:
+                bourne={}
+                bourne['n']=i
+                bourne['id']=usr.id
+                bourne['ques']=usr.question
+                bourne['ans']=usr.ans
+                bourne['a1']=usr.a1
+                bourne['a2']=usr.a2
+                bourne['a3']=usr.a3
+                bourne['a4']=usr.a4
+                i+=1
+                args.append(bourne)
+        # return str(args)
+        return render_template("quizzes.html",args=args)
 
 @mod_user.route("/procedure")
 def procedure():
@@ -64,7 +89,12 @@ def referes():
     bourne={}
     i=0
     for usr in user:
-        bourne[i]=usr.ans
+        bourne[str(i)+"ans"]=usr.ans
+        bourne[str(i)+"qs"]=usr.question
+        bourne[str(i)+"a1"]=usr.a1
+        bourne[str(i)+"a2"]=usr.a2
+        bourne[str(i)+"a3"]=usr.a3
+        bourne[str(i)+"a4"]=usr.a4
         i=i+1
     return jsonify(bourne)
 

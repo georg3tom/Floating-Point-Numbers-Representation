@@ -1,22 +1,38 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ans = db.Column(db.Integer)
-    def __init__(self, id,ans):
+    question=db.Column(db.String(220), unique=True, nullable=False)
+    a1=db.Column(db.String(220), nullable=False)
+    a2=db.Column(db.String(220), nullable=False)
+    a3=db.Column(db.String(220), nullable=False)
+    a4=db.Column(db.String(220), nullable=False)
+    def __init__(self,id,cans,ques,ans):
         self.id=id
-        self.ans=ans
+        self.ans=cans
+        self.question=ques
+        self.a1=ans[0]
+        self.a2=ans[1]
+        self.a3=ans[2]
+        self.a4=ans[3]
+
     def check(self,op):
         return int(self.ans==int(op))
-def quizcheck(a):
+def quizcheck(a,b):
     user=User.query.all()
-    i=0
+    j=0
     r=""
-    for usr in user:
-        if a[i]==str(usr.ans):
-            r+="1"
-        else:
-            r+="0"
-        i=i+1
+    for i in b:
+        for usr in user:
+            if  str(i) == str(usr.id):
+                if str(a[j]) == str(usr.ans):
+                    r+="1"
+                    continue
+                else:
+                    r+="0"
+                    continue
+        j=j+1
     return r

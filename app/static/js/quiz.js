@@ -31,26 +31,40 @@ function check(argument)
 		if(form["q4"][i].checked)
 			q4 = form["q4"][i].value;
 
-	length = form["q5"].length;
-	for(i=0; i<length; i++)
-		if(form["q5"][i].checked)
-			q5 = form["q5"][i].value;
-	k[0]=q1;k[1]=q2;k[2]=q3;k[3]=q4;k[4]=q5;
-	url="/quizzes?q1="+q1+"&q2="+q2+"&q3="+q3+"&q4="+q4+"&q5="+q5;
+	k[0]=q1;k[1]=q2;k[2]=q3;k[3]=q4;
+	var kk=new Array()
+	kk[0]=document.querySelector('.q1').id
+	kk[1]=document.querySelector('.q2').id
+	kk[2]=document.querySelector('.q3').id
+	kk[3]=document.querySelector('.q4').id
+	url="/quizzes?q1="+q1+"&q11="+kk[0]+"&q2="+q2+"&q22="+kk[1]+"&q3="+q3+"&q33="+kk[2]+"&q4="+q4+"&q44="+kk[3];
+	console.log(url)
 	ret=httpGet(url);
-	for(i=0;i<5;++i)
+	console.log(ret)
+	for(i=0;i<4;++i)
 	{
 		if(ret[i]==1)
-			document.getElementById(i+1).innerHTML="Correct";
+		{
+			document.getElementById(kk[i]).innerHTML="Correct";
+			document.getElementById(kk[i]).style.color="green";
+		}
 		else if(k[i]!=5)
-			document.getElementById(i+1).innerHTML="Incorrect";
+		{
+			document.getElementById(kk[i]).innerHTML="Incorrect";
+			document.getElementById(kk[i]).style.color="red";
+		}
 	}
 }
 function resetq(argument)
 {
-	for(i=0;i<5;++i)
+	var kk=new Array()
+	kk[0]=document.querySelector('.q1').id
+	kk[1]=document.querySelector('.q2').id
+	kk[2]=document.querySelector('.q3').id
+	kk[3]=document.querySelector('.q4').id
+	for(i=0;i<4;++i)
 	{
-		document.getElementById(i+1).innerHTML="";
+		document.getElementById(kk[i]).innerHTML="";
 	}
 	$( "input" ).prop( "checked", false )
 
