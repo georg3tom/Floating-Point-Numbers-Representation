@@ -1,0 +1,13 @@
+.
+└── app
+    ├── errors		//contains routes related to errors
+    ├── static		//contains all static files
+    │   ├── css		//css files
+    │   ├── img		//img files
+    │   └── js		//js files
+    ├── templates	//all templates(!error)
+    │   └── errors	//error templates
+    └── user		//all other routes and functions
+
+	/static/layout.html		contains the default layout for the html pages
+
