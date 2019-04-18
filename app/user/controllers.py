@@ -6,7 +6,9 @@ from .exp import float_bin,decimal_converter,IEEE754
 
 mod_user = Blueprint('user', __name__, url_prefix='/')
 
-#Contains routes for all main pages
+"""
+Contains routes for all main pages
+"""
 @mod_user.route("/")
 @mod_user.route("/introduction")
 def intro():
@@ -26,6 +28,9 @@ def exp():
 
 @mod_user.route("/experiment/<arg>")
 def ieee(arg):
+    """
+    returns IEEE754 format of args
+    """
     try:
         ret=IEEE754(float(arg))
     except:
@@ -94,16 +99,19 @@ def references():
 def referes():
     user=Quiz.query.all()
     bourne={}
+    temp={}
     i=0
     for usr in user:
-        bourne[str(i)+"ans"]=usr.ans
-        bourne[str(i)+"qs"]=usr.question
-        bourne[str(i)+"a1"]=usr.a1
-        bourne[str(i)+"a2"]=usr.a2
-        bourne[str(i)+"a3"]=usr.a3
-        bourne[str(i)+"a4"]=usr.a4
+        bourne={}
+        bourne["ans"]=usr.ans
+        bourne["qs"]=usr.question
+        bourne["a1"]=usr.a1
+        bourne["a2"]=usr.a2
+        bourne["a3"]=usr.a3
+        bourne["a4"]=usr.a4
+        temp[i]=bourne
         i=i+1
-    return jsonify(bourne)
+    return jsonify(temp)
 
 @mod_user.route("/feedback")
 def feedback():

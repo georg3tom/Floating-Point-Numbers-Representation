@@ -2,9 +2,10 @@ from flask_sqlalchemy import SQLAlchemy
 from app import db
 from sqlalchemy.dialects.postgresql import ARRAY
 
-#model for the quiz
-#contains questions,solution,and options
 class Quiz(db.Model):
+    """
+    Data model for database to store quiz Qs,Ans,Ops
+    """
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ans = db.Column(db.Integer)
     question=db.Column(db.String(220), unique=True, nullable=False)
@@ -24,8 +25,10 @@ class Quiz(db.Model):
     def check(self,op):
         return int(self.ans==int(op))
 
-# evaluated the users input
 def quizcheck(a,b):
+    """
+    Function to evaluate users input
+    """
     user=Quiz.query.all()
     j=0
     r=""

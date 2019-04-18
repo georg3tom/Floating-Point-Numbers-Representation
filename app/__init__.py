@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-#Database configs
+"""
+Database configs
+"""
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///quiz.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
