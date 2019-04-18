@@ -1,3 +1,4 @@
+#Floating-Point Numbers Representation
 .
 └── app
     ├── errors		//contains routes related to errors
@@ -17,7 +18,7 @@
 	/errors/handlers.py			contains routes for error 404 and 500
 
 
-	/static/js/exp.js :
+###	/static/js/exp.js :
 		funtion ieee()
 			reads value from the input box(id='infloat')
 			sends a GET request to the server
@@ -25,7 +26,7 @@
 			if ret['status'] is fail the input validation has failed
 			else a new table is inserted
 
-	/static/js/quiz.js :
+###	/static/js/quiz.js :
 		function check() :
 			gets user marked options from the form
 			send a GET requst to evaluate the users response
@@ -38,12 +39,12 @@
 			Resets the users input and
 			clears 'Correct' or 'Incorrect' tags
 
-	/quizadd.py :
+###	/quizadd.py :
 		adds question to the database
 		the database file is located at app/quiz.db
 
 
-	/user/controllers.py :
+###	/user/controllers.py :
 		Contains routed to all pages in the navbar-
 			Introduction,Objective,Theory,Experiment,Manual,Quizzes,Procedure,Reference,
 			Feedback and for other get request for quiz and experiment
@@ -64,11 +65,11 @@
 				quizcheck is called to evaluate the users response
 
 
-	/user/model.py :
+###	/user/model.py :
 		Contains Quiz class which is a model for the database
 
 		function quizcheck() :
 			Checks if the user input matches with the answers saved in the database
 
-	/user/exp.py :
+###	/user/exp.py :
 		Functions to convert a number to its iEEE 754 representation
