@@ -1,3 +1,5 @@
+Floating-Point Numbers Representation
+
 .
 └── app
     ├── errors		//contains routes related to errors
@@ -55,12 +57,13 @@
 				then JSON data with ['status']="fail" is returned
 			/quizzes? :
 				creates a list containing 4 random numbers between 1 and 8
+                the list is used to render random question
 				args is an array of JSON objects containing questions with id in the list
 				args is passed to the render_template function
 
-				if qi is not None
-				qi is the users response
-				qii is the question id
+				if qi is not None:
+				qi is the users response for question i
+				qii is the question id of question i
 				quizcheck is called to evaluate the users response
 
 
@@ -71,4 +74,4 @@
 			Checks if the user input matches with the answers saved in the database
 
 	/user/exp.py :
-		Functions to convert a number to its iEEE 754 representation
+		Functions to convert a number to its IEEE 754 representation
