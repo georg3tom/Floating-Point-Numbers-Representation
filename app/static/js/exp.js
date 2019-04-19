@@ -9,9 +9,9 @@ function httpGet(theUrl)
 }
 
 // function to get the IEEE format
-function ieee()
+function ieee(fnum=document.getElementById('infloat').value)
 {
-	fnum=document.getElementById('infloat').value;
+	//fnum=document.getElementById('infloat').value;
 	url="/experiment/"+fnum
 	ret={}
 	ret=httpGet(url) //requests server for the IEEE format of input
@@ -53,5 +53,6 @@ function ieee()
 		cell2 = row.insertCell(1);
 		cell1.innerHTML = "IEEE 754 Representation";
 		cell2.innerHTML = ret['final'];
+		return final
 	}
 }
