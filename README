@@ -41,7 +41,7 @@ Floating-Point Numbers Representation
 			clears 'Correct' or 'Incorrect' tags
 
 	/quizadd.py :
-		adds question to the database
+		adds questions to the database
 		the database file is located at app/quiz.db
 
 

@@ -32,7 +32,7 @@ def ieee(arg):
     returns IEEE754 format of args
     """
     try:
-        ret=IEEE754(float(arg))
+        ret=jsonify(IEEE754(float(arg)))
     except:
         #validation failed
         bourne={}

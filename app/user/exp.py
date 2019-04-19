@@ -1,4 +1,4 @@
-from flask import jsonify
+# from flask import jsonify
 
 def float_bin(number, places = 3):
     whole, dec = str(number).split(".")
@@ -62,5 +62,4 @@ def IEEE754(n) :
     bourne['exponent_bits']=exponent_bits
     bourne['mantissa']=mantissa
     bourne['final']=final
-    return jsonify(bourne)
-# print(float_bin(2.0,30))
+    return bourne
